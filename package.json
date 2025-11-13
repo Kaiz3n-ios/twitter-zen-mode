@@ -1,0 +1,27 @@
+{
+  "name": "twitter-zen-mode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR_USERNAME/twitter-zen-mode.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/twitter-zen-mode/issues"
+  },
+  "homepage": "https://github.com/YOUR_USERNAME/twitter-zen-mode#readme",
+  "dependencies": {
+    "preact": "^10.27.2"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.2",
+    "vite": "^7.2.2"
+  }
+}
