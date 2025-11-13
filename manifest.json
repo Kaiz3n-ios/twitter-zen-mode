@@ -9,5 +9,8 @@
     "matches": ["*://twitter.com/*", "*://x.com/*"],
     "js": ["content/content.js"],
     "run_at": "document_start"
-  }]
+  }],
+  "action": {
+    "default_popup": "popup/popup.html"
+  }
 }
