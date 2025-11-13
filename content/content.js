@@ -1,41 +1,39 @@
 console.log('Zen Mode loaded');
 
-function hideMetrics() {
+function applySettings() {
   chrome.storage.sync.get({
     hideLikes: true,
     hideRetweets: true,
     hideReplies: true,
     hideViews: true
   }, (settings) => {
+    console.log('Settings:', settings);
     
-    if (settings.hideLikes) {
-      document.querySelectorAll('[data-testid="like"] span').forEach(el => {
-        if (el.textContent.match(/\d/)) el.style.visibility = 'hidden';
-      });
-    }
+    document.querySelectorAll('[data-testid="like"] span').forEach(el => {
+      if (el.textContent.match(/\d/)) {
+        el.style.visibility = settings.hideLikes ? 'hidden' : 'visible';
+      }
+    });
     
-    if (settings.hideRetweets) {
-      document.querySelectorAll('[data-testid="retweet"] span').forEach(el => {
-        if (el.textContent.match(/\d/)) el.style.visibility = 'hidden';
-      });
-    }
+    document.querySelectorAll('[data-testid="retweet"] span').forEach(el => {
+      if (el.textContent.match(/\d/)) {
+        el.style.visibility = settings.hideRetweets ? 'hidden' : 'visible';
+      }
+    });
     
-    if (settings.hideReplies) {
-      document.querySelectorAll('[data-testid="reply"] span').forEach(el => {
-        if (el.textContent.match(/\d/)) el.style.visibility = 'hidden';
-      });
-    }
+    document.querySelectorAll('[data-testid="reply"] span').forEach(el => {
+      if (el.textContent.match(/\d/)) {
+        el.style.visibility = settings.hideReplies ? 'hidden' : 'visible';
+      }
+    });
     
-    if (settings.hideViews) {
-      document.querySelectorAll('a[href*="/analytics"]').forEach(link => {
-        link.style.visibility = 'hidden';
-      });
-    }
+    document.querySelectorAll('a[href*="/analytics"]').forEach(link => {
+      link.style.visibility = settings.hideViews ? 'hidden' : 'visible';
+    });
   });
 }
 
-setInterval(hideMetrics, 1000);
+setTimeout(applySettings, 2000);
+setInterval(applySettings, 3000);
 
-chrome.storage.onChanged.addListener(() => {
-  hideMetrics();
-});
+chrome.storage.onChanged.addListener(applySettings);
